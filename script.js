@@ -53,3 +53,31 @@ function createTree(values) {
 
   return root;
 }
+
+document
+  .getElementById("intervalsInput")
+  .addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleMaxDepthCalculation();
+    }
+  });
+
+function handleMaxDepthCalculation() {
+  const input = document.getElementById("intervalsInput").value;
+  const values = JSON.parse(input);
+
+  // Construct the binary tree
+  let root = createTree(values);
+
+  // Calculate the maximum depth of the binary tree
+  const depth = maxDepth(root);
+
+  // Display the output
+  document.getElementById("output").innerText = "Maximum Depth: " + depth;
+}
+
+// Optional: Trigger the maximum depth calculation even without clicking submit button
+document.addEventListener("DOMContentLoaded", function() {
+  handleMaxDepthCalculation();
+});
